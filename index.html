@@ -84,7 +84,7 @@ header{
 
 <header>
 <h1>Speedway Engines and Parts</h1>
-<p>Cĺick on thumbs to enlarge</p>
+<p>Click on thumbs to enlarge</p>
 </header>
 
 <div class="gallery">
@@ -142,31 +142,26 @@ function closeViewer(){
     viewer.style.display="none"
 }
 
-// scroll zoom kring muspekaren
+// zoom kring muspekaren
 img.addEventListener("wheel", function(e){
     e.preventDefault();
 
-    // position på bilden i transform-koordinater
     const rect = img.getBoundingClientRect();
     const offsetX = e.clientX - rect.left;
     const offsetY = e.clientY - rect.top;
 
-    // punkt på bilden före zoom
-    const pxBefore = (offsetX - posX) / scale;
-    const pyBefore = (offsetY - posY) / scale;
+    // sätt transform-origin dynamiskt
+    const originX = (offsetX / rect.width) * 100;
+    const originY = (offsetY / rect.height) * 100;
+    img.style.transformOrigin = `${originX}% ${originY}%`;
 
+    // multiplicativ zoom för mjuk känsla
     const prevScale = scale;
-
-    // ändra skala
-    if(e.deltaY < 0) scale *= 1.15;  // multiplicativ zoom ger mjukare känsla
+    if(e.deltaY < 0) scale *= 1.15;
     else scale /= 1.15;
 
     if(scale < 1) scale = 1;
     if(scale > 6) scale = 6;
-
-    // justera pos så att punkt under musen förblir på samma plats
-    posX = offsetX - pxBefore * scale;
-    posY = offsetY - pyBefore * scale;
 
     updateTransform();
 });
