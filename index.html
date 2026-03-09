@@ -20,12 +20,12 @@ header{
     text-align:center;
 }
 
-/*.gallery{
+.gallery{
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
     gap:15px;
     padding:20px;
-}*/
+}
 
 .thumb{
     background:white;
@@ -44,17 +44,6 @@ header{
     font-size:14px;
     margin-top:8px;
     color:#333;
-}
-
-.gallery{
-    display:flex;
-    align-items:center;
-    gap:20px;
-}
-
-.object{
-    display:flex;
-    gap:10px;
 }
 
 .separator{
@@ -109,6 +98,7 @@ header{
 
 
 
+<div class="gallery">
 
 <div class="thumb" onclick="openViewer('images/28-1.jpeg')">
 <img src="images/thumbs/28-1.jpeg">
@@ -123,6 +113,7 @@ header{
 <div class="thumb" onclick="openViewer('images/28-3.jpeg')">
 <img src="images/thumbs/28-3.jpeg">
 <p>Object 28 additional view</p>
+</div>
 </div>
 
 <div class="separator"></div>
