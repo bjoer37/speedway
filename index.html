@@ -96,7 +96,7 @@ header{
 
 <div class="thumb" onclick="openViewer('images/28-2.jpeg')">
 <img src="images/thumbs/28-1_t.jpeg">
-<p>Cylinder</p>
+<p>Cylinde</p>
 </div>
 
 <div class="thumb" onclick="openViewer('images/28-3.jpeg')">
@@ -166,17 +166,28 @@ img.addEventListener("wheel", function(e){
     updateTransform();
 });
 
-// dubbelklick zoom
-img.addEventListener("dblclick", function(){
+// dubbelklick för snabbzoom kring muspekaren
+img.addEventListener("dblclick", function(e){
+    // position på bilden relativt viewer
+    const rect = img.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    const offsetY = e.clientY - rect.top;
+
     if(scale === 1){
-        scale = 2.5
+        scale = 2.5;
+        // sätt transform-origin till muspekaren
+        const originX = (offsetX / rect.width) * 100;
+        const originY = (offsetY / rect.height) * 100;
+        img.style.transformOrigin = `${originX}% ${originY}%`;
     }else{
-        scale = 1
-        posX = 0
-        posY = 0
+        scale = 1;
+        posX = 0;
+        posY = 0;
+        img.style.transformOrigin = `center center`;
     }
-    updateTransform()
-})
+
+    updateTransform();
+});
 
 // panorering start
 img.addEventListener("mousedown", function(e){
