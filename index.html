@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bildgalleri</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f4f4f4;
+}
+
+header{
+    background:#333;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    gap:15px;
+    padding:20px;
+}
+
+.thumb{
+    background:white;
+    padding:10px;
+    border-radius:8px;
+    box-shadow:0 2px 5px rgba(0,0,0,0.2);
+    cursor:pointer;
+}
+
+.thumb img{
+    width:100%;
+    border-radius:5px;
+}
+
+.thumb p{
+    font-size:14px;
+    margin-top:8px;
+}
+
+.viewer{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+.viewer img{
+    max-width:90%;
+    max-height:70%;
+}
+
+.viewer p{
+    color:white;
+    margin-top:15px;
+    font-size:18px;
+}
+
+.close{
+    position:absolute;
+    top:20px;
+    right:40px;
+    font-size:40px;
+    color:white;
+    cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Mitt Bildprojekt</h1>
+<p>Klicka på en bild för större version</p>
+</header>
+
+<div class="gallery">
+
+<div class="thumb" onclick="openViewer('images/bild1.jpg','Beskrivning av bild 1')">
+<img src="images/thumbs/bild1.jpg">
+<p>Beskrivning av bild 1</p>
+</div>
+
+<div class="thumb" onclick="openViewer('images/bild2.jpg','Beskrivning av bild 2')">
+<img src="images/thumbs/bild2.jpg">
+<p>Beskrivning av bild 2</p>
+</div>
+
+<div class="thumb" onclick="openViewer('images/bild3.jpg','Beskrivning av bild 3')">
+<img src="images/thumbs/bild3.jpg">
+<p>Beskrivning av bild 3</p>
+</div>
+
+</div>
+
+
+<div class="viewer" id="viewer">
+
+<span class="close" onclick="closeViewer()">×</span>
+
+<img id="viewerImg">
+<p id="viewerText"></p>
+
+</div>
+
+
+<script>
+
+function openViewer(src,text){
+
+document.getElementById("viewerImg").src = src;
+document.getElementById("viewerText").innerText = text;
+
+document.getElementById("viewer").style.display="flex";
+
+}
+
+function closeViewer(){
+
+document.getElementById("viewer").style.display="none";
+
+}
+
+</script>
+
+</body>
+</html>
