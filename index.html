@@ -120,12 +120,19 @@ header{
 
 <script>
 
-function openViewer(src,text){
+let scale = 1;
+let img = document.getElementById("viewerImg");
+
+function openViewer(src,text){    
 
 document.getElementById("viewerImg").src = src;
 document.getElementById("viewerText").innerText = text;
 
 document.getElementById("viewer").style.display="flex";
+
+img.src = src;
+scale = 1;
+img.style.transform="scale(1)";
 
 }
 
